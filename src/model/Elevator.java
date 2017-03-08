@@ -11,15 +11,6 @@ public class Elevator extends MovingObjects {
     public void openDoors(){}
     public void closeDoors(){}
 
-    @Override
-    void moveUp() {
-
-    }
-
-    @Override
-    void moveDown() {
-
-    }
 
     @Override
     void passengerIn() {

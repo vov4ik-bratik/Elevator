@@ -9,14 +9,7 @@ public class Passenger extends MovingObjects{
     private int weight;
 
 
-    @Override
-    void moveUp() {
-
-    }
-
-    @Override
-    void moveDown() {
-
+    public Passenger() {
     }
 
     @Override
