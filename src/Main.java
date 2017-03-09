@@ -7,7 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Main /*extends Application*/ {
+public class Main extends Thread /*extends Application*/ {
 
 //    @Override
 //    public void start(Stage primaryStage) throws Exception{
@@ -18,12 +18,24 @@ public class Main /*extends Application*/ {
 //    }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
        // launch(args);
 
-        Passenger p1 = new Passenger();
+        for (int i = 0; i < 3; i++) {
 
-        System.out.println(p1.toString());
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            Passenger p = new Passenger();
+            System.out.println(p.toString());
+
+            System.out.println("*************************************");
+
+
+        }
 
 
 

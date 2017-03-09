@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Elevator extends MovingObjects {
 
-    private final int capacity;
+    private final int capacity; //should set capasity somewhere
     private int currentLoad;
 
     private List<Passenger> elevatedPassenger;
@@ -19,7 +19,6 @@ public class Elevator extends MovingObjects {
     public int getCapacity() {
         return capacity;
     }
-
 
     public int getCurrentLoad() {
         return currentLoad;
@@ -33,9 +32,6 @@ public class Elevator extends MovingObjects {
     public Elevator() {
 
         currentLoad = 0;
-
-        //create a proper constructor which can choose elevator type and set capacity
-        capacity = Const.PASSENGER_ELEVATOR_CAPACITY;
 
         elevatedPassenger = new ArrayList<>();
     }
