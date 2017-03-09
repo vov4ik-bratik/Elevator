@@ -8,8 +8,22 @@ public class Elevator extends MovingObjects {
     private int capacity;
     private int currentLoad;
 
-    public void openDoors(){}
-    public void closeDoors(){}
+    public void openDoors(){
+        try {
+            wait(1000);
+            notify();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    public void closeDoors(){
+        try {
+            wait(1000);
+            notify();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     @Override
