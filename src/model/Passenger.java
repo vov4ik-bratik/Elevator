@@ -8,9 +8,10 @@ import utilities.RandomDigitsGenerator;
  */
 public class Passenger extends MovingObjects{
 
-    private int startPos;
+    private final int startPos;
 
     private final int weight;
+
 
     public int getStartPos() {
         return startPos;
@@ -35,6 +36,15 @@ public class Passenger extends MovingObjects{
 
         } while (getDestinationPos() == startPos);
 
+    }
+
+    @Override
+    public String toString() {
+        return "Passenger: " +
+                "\nstart position: " + startPos + " floor" +
+                "\ncurrent position: " + getCurrentPos() + " floor" +
+                "\ndestination: " + getDestinationPos() + " floor" +
+                "\nweight: " + weight + "kg";
     }
 
     @Override

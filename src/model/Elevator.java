@@ -34,7 +34,7 @@ public class Elevator extends MovingObjects {
 
         currentLoad = 0;
 
-        //create a proper constructor which can choose elevator type and set capacity 
+        //create a proper constructor which can choose elevator type and set capacity
         capacity = Const.PASSENGER_ELEVATOR_CAPACITY;
 
         elevatedPassenger = new ArrayList<>();

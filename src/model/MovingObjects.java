@@ -11,9 +11,8 @@ abstract class MovingObjects {
     private int currentPos;
     private int destinationPos;
 
-    public int getCurrentPos() {
-        return currentPos;
-    }
+
+    public int getCurrentPos() { return currentPos; }
 
     public void setCurrentPos(int currentPos) {
         this.currentPos = currentPos;
@@ -26,6 +25,8 @@ abstract class MovingObjects {
     public void setDestinationPos(int destinationPos) {
         this.destinationPos = destinationPos;
     }
+
+
 
     public void moveUp(int currentPosition){
 
@@ -42,5 +43,6 @@ abstract class MovingObjects {
     }
 
     abstract void passengerIn();
+
     abstract void passengerOut();
 }

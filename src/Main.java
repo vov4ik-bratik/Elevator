@@ -1,3 +1,4 @@
+import model.Passenger;
 import utilities.RandomDigitsGenerator;
 
 import javafx.application.Application;
@@ -19,6 +20,10 @@ public class Main /*extends Application*/ {
 
     public static void main(String[] args) {
        // launch(args);
+
+        Passenger p1 = new Passenger();
+
+        System.out.println(p1.toString());
 
 
 
