@@ -17,11 +17,10 @@ public class Elevator extends MovingObjects {
 
     public Elevator(boolean isFreight, int id) {
 
-        elevatorId = id;
-        currentLoad = 0;
-
         super.setDestinationPos(getCurrentPos());
 
+        elevatorId = id;
+        currentLoad = 0;
         elevatedPassenger = new ArrayList<>();
 
         if(!isFreight)

@@ -1,18 +1,7 @@
 package view;
 
-import model.Building;
-import model.Elevator;
+import controller.BuildingMamagement;
 import model.Passenger;
-import utilities.RandomDigitsGenerator;
-
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Run //extends Thread /*extends Application*/
  {
@@ -29,5 +18,10 @@ public class Run //extends Thread /*extends Application*/
     public static void main(String[] args){
        // launch(args);
 
+        while (true) {
+
+            BuildingMamagement.getInstance().createPassenger();
+
+        }
     }
 }
