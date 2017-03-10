@@ -10,11 +10,31 @@ import java.util.List;
  */
 public class Elevator extends MovingObjects {
 
-    private final int capacity; //should set capasity somewhere
+    private final int elevatorId;
+    private final int capacity;
     private int currentLoad;
-
     private List<Passenger> elevatedPassenger;
 
+    public Elevator(boolean isFreight, int id) {
+
+        elevatorId = id;
+        currentLoad = 0;
+
+        super.setDestinationPos(getCurrentPos());
+
+        elevatedPassenger = new ArrayList<>();
+
+        if(!isFreight)
+            this.capacity = Const.PASSENGER_ELEVATOR_CAPACITY;
+        else
+            capacity = Const.FREIGHT_ELEVATOR_CAPACITY;
+
+    }
+
+
+    public int getElevatorId() {
+        return elevatorId;
+    }
 
     public int getCapacity() {
         return capacity;
@@ -24,43 +44,59 @@ public class Elevator extends MovingObjects {
         return currentLoad;
     }
 
-    public void setCurrentLoad(int currentLoad) {
-        this.currentLoad = currentLoad;
+    public List<Passenger> getElevatedPassenger() {
+        return elevatedPassenger;
     }
 
 
-    public Elevator() {
-
-        currentLoad = 0;
-
-        elevatedPassenger = new ArrayList<>();
+    public void setCurrentLoad(int load) {
+        this.currentLoad += load;
     }
+
+
+    public String toString() {
+        return "Elevator{" +
+                "capacity: " + capacity +
+                ", current load: " + currentLoad +
+                ", current position: " + getCurrentPos() +
+                ", destination position: " + getDestinationPos() +
+                '}';
+    }
+
 
     public void openDoors(){
+
         try {
-            wait(1000);
-            notify();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+                Thread.sleep(Const.ELEVATOR_DOORS_OPEN_CLOSE_TIME_ms);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        System.out.println("dooors opened");
+
     }
+
     public void closeDoors(){
+
         try {
-            wait(1000);
-            notify();
+            Thread.sleep(Const.ELEVATOR_DOORS_OPEN_CLOSE_TIME_ms);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        System.out.println("dooors closed");
     }
 
 
-    @Override
-    void passengerIn() {
+    public void passengerIn(Passenger passenger) {
 
+        currentLoad += passenger.getWeight();
+        elevatedPassenger.add(passenger);
     }
 
-    @Override
-    void passengerOut() {
+    public void passengerOut(Passenger passenger) {
 
+        currentLoad -= passenger.getWeight();
+        elevatedPassenger.remove(passenger);
     }
 }
