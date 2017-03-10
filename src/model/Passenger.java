@@ -56,12 +56,8 @@ public class Passenger extends MovingObjects{
         return result;
     }
 
-    void passengerIn() {
-
-    }
+    //void passengerIn() { }
 
 
-    void passengerOut() {
-
-    }
+    //void passengerOut() { }
 }

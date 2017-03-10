@@ -11,11 +11,8 @@ import java.util.List;
 public class Building {
 
     private int floors = Const.BUILDING_LAST_FLOORS;
-
     private final List<Elevator>elevators;
-
     private List<Passenger>passengers;
-
 
 
     public Building() {
@@ -28,7 +25,17 @@ public class Building {
 
     }
 
+
+    public int getFloors() {
+        return floors;
+    }
+
     public List<Elevator> getElevators() {
         return elevators;
+    }
+
+
+    public List<Passenger> getPassengers() {
+        return passengers;
     }
 }
