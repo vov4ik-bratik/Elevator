@@ -2,6 +2,7 @@ package controller;
 
 import constant.Const;
 import model.Building;
+import model.Elevator;
 import model.Passenger;
 
 /**
@@ -26,7 +27,6 @@ public class BuildingMamagement {
         return building;
     }
 
-
     public void createPassenger() {
 
         BuildingMamagement.getInstance().getBuilding().createPassenger();
@@ -42,4 +42,14 @@ public class BuildingMamagement {
 
         BuildingMamagement.getInstance().getBuilding().removePassenger(passenger);
     }
+
+    public void elevatorStart(Elevator elevator){
+
+        BuildingMamagement.getInstance().getBuilding().elevatorStart(elevator);
+    }
+
+    public void allElevatorsStart(){
+
+    }
+
 }

@@ -1,7 +1,12 @@
 package view;
 
+import constant.Const;
 import controller.BuildingMamagement;
+import model.Elevator;
 import model.Passenger;
+
+import java.util.List;
+import java.util.Map;
 
 public class Run //extends Thread /*extends Application*/
  {
@@ -18,10 +23,55 @@ public class Run //extends Thread /*extends Application*/
     public static void main(String[] args){
        // launch(args);
 
-        while (true) {
+        System.out.println(BuildingMamagement.getInstance().getBuilding().getElevatorById(Const.FREIGHT_ELEVATOR_ID));
+        System.out.println(BuildingMamagement.getInstance().getBuilding().getElevatorById(Const.FIRST_PASSENGER_ELEVATOR_ID));
+        System.out.println(BuildingMamagement.getInstance().getBuilding().getElevatorById(Const.SECOND_PASSENGER_ELEVATOR_ID));
+        System.out.println("********************************");
 
-            BuildingMamagement.getInstance().createPassenger();
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(true){
+                    BuildingMamagement.getInstance().createPassenger();
+                }
+            }
+        });
 
-        }
+        thread.start();
+
+        Thread thread1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(true){
+                    BuildingMamagement.getInstance().elevatorStart(BuildingMamagement.getInstance().getBuilding().getElevatorById(Const.FREIGHT_ELEVATOR_ID));
+                }
+            }
+        });
+
+        thread1.start();
+
+        Thread thread2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(true){
+                    BuildingMamagement.getInstance().elevatorStart(BuildingMamagement.getInstance().getBuilding().getElevatorById(Const.FIRST_PASSENGER_ELEVATOR_ID));
+                }
+            }
+        });
+
+        thread2.start();
+
+        Thread thread3 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(true){
+                    BuildingMamagement.getInstance().elevatorStart(BuildingMamagement.getInstance().getBuilding().getElevatorById(Const.SECOND_PASSENGER_ELEVATOR_ID));
+                }
+            }
+        });
+
+        thread3.start();
+
     }
+
 }

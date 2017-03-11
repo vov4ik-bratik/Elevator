@@ -7,6 +7,8 @@ import model.Elevator;
  */
 public interface ElevatorManager {
 
+    void elevatorStar(Elevator elevator);
+
     void moveUp(Elevator elevator);
     void moveDown(Elevator elevator);
 

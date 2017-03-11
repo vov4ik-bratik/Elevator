@@ -11,28 +11,28 @@ import java.util.List;
 public class Elevator extends MovingObjects {
 
     private final int elevatorId;
+    private boolean isStarted = false;
     private final int capacity;
     private int currentLoad;
     private List<Passenger> elevatedPassenger;
 
-    public Elevator(boolean isFreight, int id) {
+    public Elevator(int id, int capacity) {
 
         super.setDestinationPos(getCurrentPos());
-
         elevatorId = id;
+        this.capacity = capacity;
         currentLoad = 0;
         elevatedPassenger = new ArrayList<>();
-
-        if(!isFreight)
-            this.capacity = Const.PASSENGER_ELEVATOR_CAPACITY;
-        else
-            capacity = Const.FREIGHT_ELEVATOR_CAPACITY;
 
     }
 
 
     public int getElevatorId() {
         return elevatorId;
+    }
+
+    public boolean isStarted() {
+        return isStarted;
     }
 
     public int getCapacity() {
@@ -47,6 +47,10 @@ public class Elevator extends MovingObjects {
         return elevatedPassenger;
     }
 
+
+    public void setStarted(boolean started) {
+        isStarted = started;
+    }
 
     public void setCurrentLoad(int load) {
         this.currentLoad += load;

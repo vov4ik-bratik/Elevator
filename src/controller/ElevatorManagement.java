@@ -8,6 +8,11 @@ import model.Elevator;
 public class ElevatorManagement implements ElevatorManager {
 
     @Override
+    public void elevatorStar(Elevator elevator) {
+
+    }
+
+    @Override
     public void moveUp(Elevator elevator) {
         elevator.moveUp();
     }
