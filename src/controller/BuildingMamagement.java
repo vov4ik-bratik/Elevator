@@ -8,7 +8,7 @@ import model.Passenger;
 /**
  * Created by vs on 10.03.17.
  */
-public class BuildingMamagement {
+public class BuildingMamagement extends Thread {
 
     private static final BuildingMamagement BUILDING_MAMAGEMENT = new BuildingMamagement();
 
@@ -28,28 +28,28 @@ public class BuildingMamagement {
     }
 
     public void createPassenger() {
-
-        BuildingMamagement.getInstance().getBuilding().createPassenger();
-
-        try {
-            Thread.sleep(Const.NEW_PASSENGER_GENERATE_TIME_ms);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        getBuilding().createPassenger();
     }
+
 
     public void removePassenger(Passenger passenger) {
 
-        BuildingMamagement.getInstance().getBuilding().removePassenger(passenger);
+        getBuilding().removePassenger(passenger);
     }
 
     public void elevatorStart(Elevator elevator){
-
-        BuildingMamagement.getInstance().getBuilding().elevatorStart(elevator);
+        getBuilding().elevatorStart(elevator);
     }
 
-    public void allElevatorsStart(){
 
+    public void allElevatorsStarts(){
+
+
+        //all this threads work serial!!! They shoul work concurrent
+
+        elevatorStart(getBuilding().getElevatorById(Const.FREIGHT_ELEVATOR_ID));
+        elevatorStart(getBuilding().getElevatorById(Const.FIRST_PASSENGER_ELEVATOR_ID));
+        elevatorStart(getBuilding().getElevatorById(Const.SECOND_PASSENGER_ELEVATOR_ID));
     }
 
 }

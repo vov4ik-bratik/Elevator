@@ -20,11 +20,18 @@ public class Passenger extends MovingObjects{
         return elevatorId;
     }
 
-
     public Passenger() {
 
         weight = RandomDigitsGenerator.generator(Const.PASSENGER_MIN_WEIGHT, Const.PASSENGER_MAX_WEIGHT);
         elevatorId = RandomDigitsGenerator.generator(Const.FREIGHT_ELEVATOR_ID, Const.SECOND_PASSENGER_ELEVATOR_ID);
+    }
+
+    public void moveUp(){
+        setCurrentPos(getCurrentPos() + 1);
+    }
+
+    public void moveDown(){
+        setCurrentPos(getCurrentPos() - 1);
     }
 
     @Override
@@ -56,8 +63,4 @@ public class Passenger extends MovingObjects{
         return result;
     }
 
-    //void passengerIn() { }
-
-
-    //void passengerOut() { }
 }

@@ -2,6 +2,8 @@ package view;
 
 import constant.Const;
 import controller.BuildingMamagement;
+import controller.ElevatorStartTread;
+import controller.PassengerCreatingThread;
 import model.Elevator;
 import model.Passenger;
 
@@ -29,33 +31,19 @@ public class Run //extends Thread /*extends Application*/
         System.out.println("********************************");
 
 
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while(true){
-                    BuildingMamagement.getInstance().createPassenger();
+//        PassengerCreatingThread passengerCreatingThread = new PassengerCreatingThread();
+//        ElevatorStartTread elevatorStartTread = new ElevatorStartTread();
+//
+//        passengerCreatingThread.start();
+//        elevatorStartTread.start();
 
-                    try {
-                        Thread.sleep(Const.NEW_PASSENGER_GENERATE_TIME_ms);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-
-        thread.start();
+//        for (int i = 0; i < 6; i++) {
+//            BuildingMamagement.getInstance().createPassenger();
+//        }
+//
+//        BuildingMamagement.getInstance().allElevatorsStarts();
 
 
-        Thread thread2 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                BuildingMamagement.getInstance().allElevatorsStarts();
-            }
-        });
-
-        thread2.start();
 
     }
-
 }

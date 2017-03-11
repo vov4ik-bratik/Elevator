@@ -15,7 +15,7 @@ public class Building {
 
     public Building() {
 
-        elevatorsWithPassengers = new HashMap<>(3);
+        elevatorsWithPassengers = new HashMap<>();
 
         elevatorsWithPassengers.put(new Elevator(Const.FREIGHT_ELEVATOR_ID, Const.FREIGHT_ELEVATOR_CAPACITY), new ArrayList<>());
         elevatorsWithPassengers.put(new Elevator(Const.FIRST_PASSENGER_ELEVATOR_ID, Const.PASSENGER_ELEVATOR_CAPACITY), new ArrayList<>());
@@ -39,9 +39,9 @@ public class Building {
         for (Map.Entry<Elevator, List<Passenger>> entry : elevatorsWithPassengers.entrySet()) {
             if(entry.getKey().getElevatorId() == passenger.getElevatorId()){
                 entry.getValue().add(passenger);
+                break;
             }
         }
-
     }
 
     public List<Passenger> getPassengerList(int elevatorId){
@@ -73,7 +73,6 @@ public class Building {
         return null;
     }
 
-
     public void removePassenger(Passenger passenger){
 
         List<Passenger> passengers = new ArrayList<>();
@@ -82,26 +81,66 @@ public class Building {
         setPassengerList(passenger.getElevatorId(), passengers);
     }
 
+    public void loadPassenger (Elevator elevator){
+        elevator.openDoors();
+
+        for (Passenger p: getPassengerList(elevator.getElevatorId())) {
+            if(p.getCurrentPos() == elevator.getCurrentPos()){
+                elevator.passengerIn(p);
+                if(elevator.getCurrentLoad() > elevator.getCapacity()){
+                    elevator.passengerOut(p);
+                    break;
+                }
+            }
+        }
+
+        elevator.closeDoors();
+    }
 
     public void elevatorStart(Elevator elevator){
 
         if(getPassengerList(elevator.getElevatorId()).size() > 0) {
 
-            getElevatorById(elevator.getElevatorId()).setStarted(true);
+            //go to "zero" passenger
 
             if(getPassengerList(elevator.getElevatorId()).get(0).getCurrentPos() > elevator.getCurrentPos()){
+
                 do{
+                    System.out.print("elevator id = " + elevator.getElevatorId() + " ");
+                    elevator.moveUp();
+                } while (elevator.getCurrentPos() != getPassengerList(elevator.getElevatorId()).get(0).getCurrentPos());
+
+                }
+
+                else if (getPassengerList(elevator.getElevatorId()).get(0).getCurrentPos() < elevator.getCurrentPos()){
+                    do{
+                        System.out.print("elevator id = " + elevator.getElevatorId() + " ");
+                        elevator.moveDown();
+                    } while (elevator.getCurrentPos() != getPassengerList(elevator.getElevatorId()).get(0).getCurrentPos());
+
+                }
+
+
+             loadPassenger(elevator);
+
+            //deliver passenger
+
+            if(elevator.getElevatedPassenger().get(0).getDestinationPos() > elevator.getCurrentPos()){
                 elevator.moveUp();
-                } while (elevator.getCurrentPos() != getPassengerList(elevator.getElevatorId()).get(0).getCurrentPos());
             }
-            else if (getPassengerList(elevator.getElevatorId()).get(0).getCurrentPos() < elevator.getCurrentPos()){
-                do{
-                elevator.moveDown();
-                } while (elevator.getCurrentPos() != getPassengerList(elevator.getElevatorId()).get(0).getCurrentPos());
-            }
+
+
+
+
+
+
+
         }
-        else
-            return;
+
+
+
+
+
 
     }
 

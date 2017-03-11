@@ -12,6 +12,10 @@ abstract class MovingObjects extends Thread{
     private int currentPos;
     private int destinationPos;
 
+    abstract public void moveUp();
+
+    abstract public void moveDown();
+
     public MovingObjects() {
 
         currentPos = RandomDigitsGenerator.generator(Const.BUILDING_FIRST_FLOORS, Const.BUILDING_LAST_FLOORS);
@@ -28,7 +32,6 @@ abstract class MovingObjects extends Thread{
     public int getDestinationPos() {
         return destinationPos;
     }
-
 
     public void setCurrentPos(int currentPos) {
         this.currentPos = currentPos;
@@ -56,35 +59,6 @@ abstract class MovingObjects extends Thread{
         return result;
     }
 
-    public void moveUp(){
 
-        if(currentPos >= Const.BUILDING_LAST_FLOORS)
-            return;
-        else ++currentPos;
-
-        try {
-            Thread.sleep(Const.ELEVATE_TIME_PER_FLOOR_ms);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("move up");
-
-    }
-
-
-    public void moveDown(){
-
-        if(currentPos <= Const.BUILDING_FIRST_FLOORS)
-            return;
-        else --currentPos;
-
-        try {
-            Thread.sleep(Const.ELEVATE_TIME_PER_FLOOR_ms);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println("move down");
-    }
 
 }
