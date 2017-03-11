@@ -62,6 +62,7 @@ public class Elevator extends MovingObjects {
             Thread.sleep(Const.ELEVATE_TIME_PER_FLOOR_ms);
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
 
             if(getCurrentPos() >= Const.BUILDING_LAST_FLOORS)
                 return;
@@ -72,7 +73,6 @@ public class Elevator extends MovingObjects {
             }
 
             System.out.println("move up");
-        }
     }
 
     public void moveDown(){
@@ -81,6 +81,7 @@ public class Elevator extends MovingObjects {
             Thread.sleep(Const.ELEVATE_TIME_PER_FLOOR_ms);
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
 
             if(getCurrentPos() <= Const.BUILDING_FIRST_FLOORS)
                 return;
@@ -92,7 +93,6 @@ public class Elevator extends MovingObjects {
 
             System.out.println("move down");
         }
-    }
 
 
     public void openDoors(){

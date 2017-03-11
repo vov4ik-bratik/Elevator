@@ -32,11 +32,6 @@ public class BuildingMamagement extends Thread {
     }
 
 
-    public void removePassenger(Passenger passenger) {
-
-        getBuilding().removePassenger(passenger);
-    }
-
     public void elevatorStart(Elevator elevator){
         getBuilding().elevatorStart(elevator);
     }
@@ -48,8 +43,8 @@ public class BuildingMamagement extends Thread {
         //all this threads work serial!!! They shoul work concurrent
 
         elevatorStart(getBuilding().getElevatorById(Const.FREIGHT_ELEVATOR_ID));
-        elevatorStart(getBuilding().getElevatorById(Const.FIRST_PASSENGER_ELEVATOR_ID));
-        elevatorStart(getBuilding().getElevatorById(Const.SECOND_PASSENGER_ELEVATOR_ID));
+//        elevatorStart(getBuilding().getElevatorById(Const.FIRST_PASSENGER_ELEVATOR_ID));
+//        elevatorStart(getBuilding().getElevatorById(Const.SECOND_PASSENGER_ELEVATOR_ID));
     }
 
 }

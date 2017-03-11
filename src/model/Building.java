@@ -73,26 +73,28 @@ public class Building {
         return null;
     }
 
-    public void removePassenger(Passenger passenger){
-
-        List<Passenger> passengers = new ArrayList<>();
-        passengers.addAll(getPassengerList(passenger.getElevatorId()));
-        passengers.remove(passenger);
-        setPassengerList(passenger.getElevatorId(), passengers);
-    }
-
     public void loadPassenger (Elevator elevator){
+        
         elevator.openDoors();
 
         for (Passenger p: getPassengerList(elevator.getElevatorId())) {
-            if(p.getCurrentPos() == elevator.getCurrentPos()){
+            if(p.getCurrentPos() == elevator.getCurrentPos() &&
+                    (elevator.getCurrentLoad() + p.getWeight()) < elevator.getCapacity()){
                 elevator.passengerIn(p);
-                if(elevator.getCurrentLoad() > elevator.getCapacity()){
-                    elevator.passengerOut(p);
-                    break;
-                }
             }
         }
+
+//        Iterator<Passenger> iterator = elevator.getElevatedPassenger().iterator();
+//
+//        while (iterator.hasNext()){
+//            Passenger p = iterator.next();
+//            if(p.getCurrentPos() == elevator.getCurrentPos() &&
+//                    (elevator.getCurrentLoad() + p.getWeight()) < elevator.getCapacity()){
+//                iterator.remove();
+//            }
+//        }
+
+
 
         elevator.closeDoors();
     }
@@ -120,7 +122,6 @@ public class Building {
 
                 }
 
-
              loadPassenger(elevator);
 
             //deliver passenger
@@ -128,16 +129,12 @@ public class Building {
             if(elevator.getElevatedPassenger().get(0).getDestinationPos() > elevator.getCurrentPos()){
                 elevator.moveUp();
             }
+            else  if(elevator.getElevatedPassenger().get(0).getDestinationPos() < elevator.getCurrentPos())
+                elevator.moveDown();
 
 
-
-
-
-
-
+            System.out.println("end of execution");
         }
-
-
 
 
 
