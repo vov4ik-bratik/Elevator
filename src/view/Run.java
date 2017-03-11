@@ -28,49 +28,33 @@ public class Run //extends Thread /*extends Application*/
         System.out.println(BuildingMamagement.getInstance().getBuilding().getElevatorById(Const.SECOND_PASSENGER_ELEVATOR_ID));
         System.out.println("********************************");
 
+
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 while(true){
                     BuildingMamagement.getInstance().createPassenger();
+
+                    try {
+                        Thread.sleep(Const.NEW_PASSENGER_GENERATE_TIME_ms);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
 
         thread.start();
 
-        Thread thread1 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while(true){
-                    BuildingMamagement.getInstance().elevatorStart(BuildingMamagement.getInstance().getBuilding().getElevatorById(Const.FREIGHT_ELEVATOR_ID));
-                }
-            }
-        });
-
-        thread1.start();
 
         Thread thread2 = new Thread(new Runnable() {
             @Override
             public void run() {
-                while(true){
-                    BuildingMamagement.getInstance().elevatorStart(BuildingMamagement.getInstance().getBuilding().getElevatorById(Const.FIRST_PASSENGER_ELEVATOR_ID));
-                }
+                BuildingMamagement.getInstance().allElevatorsStarts();
             }
         });
 
         thread2.start();
-
-        Thread thread3 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while(true){
-                    BuildingMamagement.getInstance().elevatorStart(BuildingMamagement.getInstance().getBuilding().getElevatorById(Const.SECOND_PASSENGER_ELEVATOR_ID));
-                }
-            }
-        });
-
-        thread3.start();
 
     }
 
