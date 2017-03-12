@@ -27,6 +27,6 @@ public class Const {
     public static final int PASSENGER_MAX_WEIGHT = 160;
 
     public static final int PASSENGER_GO_IN_OUT_ELEVATOR_TIME_ms = 1000;
-    public static final int NEW_PASSENGER_GENERATE_TIME_ms = 10000;
+    public static final int NEW_PASSENGER_GENERATE_TIME_ms = 4000;
 
 }

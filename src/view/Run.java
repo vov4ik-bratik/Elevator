@@ -2,8 +2,6 @@ package view;
 
 import constant.Const;
 import controller.BuildingMamagement;
-import controller.ElevatorStartTread;
-import controller.PassengerCreatingThread;
 import model.Elevator;
 import model.Passenger;
 
@@ -32,18 +30,18 @@ public class Run //extends Thread /*extends Application*/
 
 
 //        PassengerCreatingThread passengerCreatingThread = new PassengerCreatingThread();
-//        ElevatorStartTread elevatorStartTread = new ElevatorStartTread();
+//        Elevator1StartThread elevatorStartTread = new Elevator1StartThread();
 //
 //        passengerCreatingThread.start();
 //        elevatorStartTread.start();
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 3; i++) {
             BuildingMamagement.getInstance().createPassenger();
         }
 
-        BuildingMamagement.getInstance().elevatorStart(BuildingMamagement.getInstance().getBuilding().getElevatorById(Const.FIRST_PASSENGER_ELEVATOR_ID));
+        //BuildingMamagement.getInstance().elevatorStart(BuildingMamagement.getInstance().getBuilding().getElevatorById(Const.FIRST_PASSENGER_ELEVATOR_ID));
 
-        //BuildingMamagement.getInstance().allElevatorsStarts();
+        BuildingMamagement.getInstance().allElevatorsStarts();
 
 
 
