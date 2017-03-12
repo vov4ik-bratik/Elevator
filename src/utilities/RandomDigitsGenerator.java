@@ -1,8 +1,6 @@
 package utilities;
 
-/**
- * Created by vs on 08.03.17.
- */
+
 public final class RandomDigitsGenerator {
 
 

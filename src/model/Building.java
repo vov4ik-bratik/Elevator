@@ -1,15 +1,11 @@
 package model;
 
 import constant.Const;
-
 import java.util.*;
 
-/**
- * Created by vs on 09.03.17.
- */
+
 public class Building {
 
-    private final int floors = Const.BUILDING_LAST_FLOORS;
     private Map <Elevator, List<Passenger>>elevatorsWithPassengers;
 
 
@@ -88,15 +84,6 @@ public class Building {
                 iterator.remove();
             }
         }
-
-//        if(elevator.getElevatedPassenger().size() > 0 &&
-//                elevator.getCurrentPos() == elevator.getDestinationPos()){
-//            elevator.setDestinationPos(elevator.getElevatedPassenger().get(0).getDestinationPos());
-//        }
-//        else
-//            if (elevator.getElevatedPassenger().isEmpty()) {
-//                elevator.setDestinationPos(elevator.getCurrentPos());
-//        }
 
         elevator.closeDoors();
     }
@@ -193,6 +180,14 @@ public class Building {
 
             if (!elevator.getElevatedPassenger().isEmpty()) {
                 deliverPassenger(elevator);
+            }
+
+            try {
+                System.out.println("\n ");
+
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
 

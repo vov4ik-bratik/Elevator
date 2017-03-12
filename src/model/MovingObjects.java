@@ -3,9 +3,6 @@ package model;
 import constant.Const;
 import utilities.RandomDigitsGenerator;
 
-/**
- * Created by vs on 08.03.17.
- */
 
 abstract class MovingObjects extends Thread{
 

@@ -3,9 +3,7 @@ package controller;
 import model.Building;
 import model.Elevator;
 
-/**
- * Created by vs on 10.03.17.
- */
+
 public class BuildingMamagement extends Thread {
 
     private static final BuildingMamagement BUILDING_MAMAGEMENT = new BuildingMamagement();
@@ -21,16 +19,15 @@ public class BuildingMamagement extends Thread {
         return BUILDING_MAMAGEMENT;
     }
 
-    public Building getBuilding() {
+    Building getBuilding() {
         return building;
     }
 
-    public void createPassenger() {
+    void createPassenger() {
         getBuilding().createPassenger();
     }
 
-
-    public void elevatorStart(Elevator elevator){
+    void elevatorStart(Elevator elevator){
         getBuilding().elevatorStart(elevator);
     }
 

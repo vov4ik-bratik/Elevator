@@ -3,9 +3,7 @@ package model;
 import constant.Const;
 import utilities.RandomDigitsGenerator;
 
-/**
- * Created by vs on 08.03.17.
- */
+
 public class Passenger extends MovingObjects{
 
     private final int weight;

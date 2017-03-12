@@ -1,13 +1,10 @@
 package model;
 
 import constant.Const;
-
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by vs on 08.03.17.
- */
+
 public class Elevator extends MovingObjects {
 
     private final int elevatorId;
