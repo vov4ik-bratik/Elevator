@@ -89,14 +89,14 @@ public class Building {
             }
         }
 
-        if(elevator.getElevatedPassenger().size() > 0 &&
-                elevator.getCurrentPos() == elevator.getDestinationPos()){
-            elevator.setDestinationPos(elevator.getElevatedPassenger().get(0).getDestinationPos());
-        }
-        else
-            if (elevator.getElevatedPassenger().isEmpty()) {
-                elevator.setDestinationPos(elevator.getCurrentPos());
-        }
+//        if(elevator.getElevatedPassenger().size() > 0 &&
+//                elevator.getCurrentPos() == elevator.getDestinationPos()){
+//            elevator.setDestinationPos(elevator.getElevatedPassenger().get(0).getDestinationPos());
+//        }
+//        else
+//            if (elevator.getElevatedPassenger().isEmpty()) {
+//                elevator.setDestinationPos(elevator.getCurrentPos());
+//        }
 
         elevator.closeDoors();
     }
@@ -125,6 +125,16 @@ public class Building {
 
             }while (elevator.getDestinationPos() != elevator.getCurrentPos());
         }
+
+        if(elevator.getElevatedPassenger().size() > 0 &&
+                elevator.getCurrentPos() == elevator.getDestinationPos()){
+            elevator.setDestinationPos(elevator.getElevatedPassenger().get(0).getDestinationPos());
+        }
+        else
+            if (elevator.getElevatedPassenger().isEmpty()) {
+                elevator.setDestinationPos(elevator.getCurrentPos());
+        }
+
     }
 
     public boolean isPassengerOnTheFloor (int elevatorId, int floor){
