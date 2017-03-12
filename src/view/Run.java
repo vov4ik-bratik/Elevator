@@ -29,19 +29,7 @@ public class Run //extends Thread /*extends Application*/
         System.out.println("********************************");
 
 
-//        PassengerCreatingThread passengerCreatingThread = new PassengerCreatingThread();
-//        Elevator1StartThread elevatorStartTread = new Elevator1StartThread();
-//
-//        passengerCreatingThread.start();
-//        elevatorStartTread.start();
-
-        for (int i = 0; i < 3; i++) {
-            BuildingMamagement.getInstance().createPassenger();
-        }
-
-        //BuildingMamagement.getInstance().elevatorStart(BuildingMamagement.getInstance().getBuilding().getElevatorById(Const.FIRST_PASSENGER_ELEVATOR_ID));
-
-        BuildingMamagement.getInstance().allElevatorsStarts();
+        BuildingMamagement.getInstance().startSimulation();
 
 
 

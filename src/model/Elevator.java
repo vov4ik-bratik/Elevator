@@ -113,12 +113,12 @@ public class Elevator extends MovingObjects {
     public void passengerIn(Passenger passenger) {
         setCurrentLoad(passenger.getWeight());
         elevatedPassenger.add(passenger);
-        System.out.println("passenger in");
+        System.out.println("passenger in to elevator " + getElevatorId());
     }
 
     public void passengerOut(Passenger passenger) {
         currentLoad -= passenger.getWeight();
-        System.out.println("passenger out");
+        System.out.println("passenger out from elevator " + getElevatorId());
     }
 
     @Override
