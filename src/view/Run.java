@@ -8,5 +8,7 @@ public class Run {
 
         BuildingMamagement.getInstance().startSimulation();
 
+        //test
+
     }
 }
