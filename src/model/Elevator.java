@@ -127,8 +127,6 @@ public class Elevator extends MovingObjects {
 
     public void passengerOut(Passenger passenger) {
         currentLoad -= passenger.getWeight();
-        elevatedPassenger.remove(passenger);
-
         System.out.println("passenger out");
     }
 

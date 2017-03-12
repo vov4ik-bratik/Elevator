@@ -73,72 +73,122 @@ public class Building {
         return null;
     }
 
-    public void loadPassenger (Elevator elevator){
+    public void loadUnloadPassenger (Elevator elevator){
         
         elevator.openDoors();
 
-        for (Passenger p: getPassengerList(elevator.getElevatorId())) {
-            if(p.getCurrentPos() == elevator.getCurrentPos() &&
-                    (elevator.getCurrentLoad() + p.getWeight()) < elevator.getCapacity()){
-                elevator.passengerIn(p);
+        Iterator<Passenger>iterator = elevator.getElevatedPassenger().iterator();
+
+        while (iterator.hasNext()){
+            Passenger p = iterator.next();
+            if (p.getDestinationPos() == elevator.getCurrentPos()){
+                elevator.passengerOut(p);
+                iterator.remove();
             }
         }
 
-//        Iterator<Passenger> iterator = elevator.getElevatedPassenger().iterator();
-//
-//        while (iterator.hasNext()){
-//            Passenger p = iterator.next();
-//            if(p.getCurrentPos() == elevator.getCurrentPos() &&
-//                    (elevator.getCurrentLoad() + p.getWeight()) < elevator.getCapacity()){
-//                iterator.remove();
-//            }
-//        }
+        iterator =  getPassengerList(elevator.getElevatorId()).iterator();
 
+        while (iterator.hasNext()){
+            Passenger p = iterator.next();
+            if(p.getCurrentPos() == elevator.getCurrentPos() &&
+                    (elevator.getCurrentLoad() + p.getWeight()) < elevator.getCapacity()){
+                elevator.passengerIn(p);
+                iterator.remove();
+            }
+        }
 
+        if(elevator.getElevatedPassenger().size() > 0 &&
+                elevator.getCurrentPos() == elevator.getDestinationPos()){
+            elevator.setDestinationPos(elevator.getElevatedPassenger().get(0).getDestinationPos());
+        }
+        else
+            if (elevator.getElevatedPassenger().isEmpty()) {
+                elevator.setDestinationPos(elevator.getCurrentPos());
+        }
 
         elevator.closeDoors();
     }
 
-    public void elevatorStart(Elevator elevator){
+    public void deliverPassenger(Elevator elevator) {
 
-        if(getPassengerList(elevator.getElevatorId()).size() > 0) {
-
-            //go to "zero" passenger
-
-            if(getPassengerList(elevator.getElevatorId()).get(0).getCurrentPos() > elevator.getCurrentPos()){
-
-                do{
-                    System.out.print("elevator id = " + elevator.getElevatorId() + " ");
-                    elevator.moveUp();
-                } while (elevator.getCurrentPos() != getPassengerList(elevator.getElevatorId()).get(0).getCurrentPos());
-
-                }
-
-                else if (getPassengerList(elevator.getElevatorId()).get(0).getCurrentPos() < elevator.getCurrentPos()){
-                    do{
-                        System.out.print("elevator id = " + elevator.getElevatorId() + " ");
-                        elevator.moveDown();
-                    } while (elevator.getCurrentPos() != getPassengerList(elevator.getElevatorId()).get(0).getCurrentPos());
-
-                }
-
-             loadPassenger(elevator);
-
-            //deliver passenger
-
-            if(elevator.getElevatedPassenger().get(0).getDestinationPos() > elevator.getCurrentPos()){
+        if(elevator.getDestinationPos() > elevator.getCurrentPos()){
+            do{
                 elevator.moveUp();
-            }
-            else  if(elevator.getElevatedPassenger().get(0).getDestinationPos() < elevator.getCurrentPos())
+
+                if(isPassengerOnTheFloor(elevator.getElevatorId(), elevator.getCurrentPos()) ||
+                        isArrivedPassengerInElevator(elevator.getElevatorId(), elevator.getCurrentPos())) {
+                    loadUnloadPassenger(elevator);
+                }
+
+            }while (elevator.getDestinationPos() != elevator.getCurrentPos());
+        }
+        else {
+            do{
                 elevator.moveDown();
 
+                if(isPassengerOnTheFloor(elevator.getElevatorId(), elevator.getCurrentPos()) ||
+                        isArrivedPassengerInElevator(elevator.getElevatorId(), elevator.getCurrentPos())) {
+                    loadUnloadPassenger(elevator);
+                }
 
-            System.out.println("end of execution");
+            }while (elevator.getDestinationPos() != elevator.getCurrentPos());
+        }
+    }
+
+    public boolean isPassengerOnTheFloor (int elevatorId, int floor){
+
+        for (Passenger p : getPassengerList(elevatorId)) {
+            if(p.getCurrentPos() == floor){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isArrivedPassengerInElevator (int elevatorId, int floor){
+
+        for (Passenger p : getElevatorById(elevatorId).getElevatedPassenger()) {
+            if(p.getDestinationPos() == floor){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void elevatorInitialStart(Elevator elevator){
+
+        elevator.setDestinationPos(getPassengerList(elevator.getElevatorId()).get(0).getCurrentPos());
+
+        if(elevator.getDestinationPos() > elevator.getCurrentPos()){
+            do{
+                elevator.moveUp();
+            }while (getPassengerList(elevator.getElevatorId()).get(0).getCurrentPos() != elevator.getCurrentPos());
+        }
+        else if (elevator.getDestinationPos() < elevator.getCurrentPos()){
+            do{
+                elevator.moveDown();
+            }while (getPassengerList(elevator.getElevatorId()).get(0).getCurrentPos() != elevator.getCurrentPos());
         }
 
-
-
+        loadUnloadPassenger(elevator);
 
     }
+
+
+    public void elevatorStart(Elevator elevator){
+
+        while(true) {
+            if (getPassengerList(elevator.getElevatorId()).size() > 0 && elevator.getElevatedPassenger().isEmpty()) {
+                elevatorInitialStart(elevator);
+            }
+
+            if (!elevator.getElevatedPassenger().isEmpty()) {
+                deliverPassenger(elevator);
+            }
+        }
+
+    }
+
 
 }
