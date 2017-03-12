@@ -37,11 +37,13 @@ public class Run //extends Thread /*extends Application*/
 //        passengerCreatingThread.start();
 //        elevatorStartTread.start();
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 20; i++) {
             BuildingMamagement.getInstance().createPassenger();
         }
 
-        BuildingMamagement.getInstance().allElevatorsStarts();
+        BuildingMamagement.getInstance().elevatorStart(BuildingMamagement.getInstance().getBuilding().getElevatorById(Const.FREIGHT_ELEVATOR_ID));
+
+        //BuildingMamagement.getInstance().allElevatorsStarts();
 
 
 

@@ -11,7 +11,6 @@ import java.util.List;
 public class Elevator extends MovingObjects {
 
     private final int elevatorId;
-    private boolean isStarted = false;
     private final int capacity;
     private int currentLoad;
     private List<Passenger> elevatedPassenger;
@@ -31,10 +30,6 @@ public class Elevator extends MovingObjects {
         return elevatorId;
     }
 
-    public boolean isStarted() {
-        return isStarted;
-    }
-
     public int getCapacity() {
         return capacity;
     }
@@ -47,10 +42,6 @@ public class Elevator extends MovingObjects {
         return elevatedPassenger;
     }
 
-
-    public void setStarted(boolean started) {
-        isStarted = started;
-    }
 
     public void setCurrentLoad(int load) {
         this.currentLoad += load;
@@ -72,7 +63,7 @@ public class Elevator extends MovingObjects {
                 p.moveUp();
             }
 
-            System.out.println("move up");
+            System.out.println("Elevator " + getElevatorId() + " move up. Current floor - " + getCurrentPos());
     }
 
     public void moveDown(){
@@ -91,7 +82,7 @@ public class Elevator extends MovingObjects {
                 p.moveDown();
             }
 
-            System.out.println("move down");
+            System.out.println("Elevator " + getElevatorId() + " move down. Current floor - " + getCurrentPos());
         }
 
 
@@ -120,7 +111,7 @@ public class Elevator extends MovingObjects {
 
 
     public void passengerIn(Passenger passenger) {
-        currentLoad += passenger.getWeight();
+        setCurrentLoad(passenger.getWeight());
         elevatedPassenger.add(passenger);
         System.out.println("passenger in");
     }
@@ -139,7 +130,6 @@ public class Elevator extends MovingObjects {
         Elevator elevator = (Elevator) o;
 
         if (elevatorId != elevator.elevatorId) return false;
-        if (isStarted != elevator.isStarted) return false;
         if (capacity != elevator.capacity) return false;
         if (currentLoad != elevator.currentLoad) return false;
         return elevatedPassenger != null ? elevatedPassenger.equals(elevator.elevatedPassenger) : elevator.elevatedPassenger == null;
@@ -149,7 +139,6 @@ public class Elevator extends MovingObjects {
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + elevatorId;
-        result = 31 * result + (isStarted ? 1 : 0);
         result = 31 * result + capacity;
         result = 31 * result + currentLoad;
         result = 31 * result + (elevatedPassenger != null ? elevatedPassenger.hashCode() : 0);

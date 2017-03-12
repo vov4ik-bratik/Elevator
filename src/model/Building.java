@@ -23,10 +23,6 @@ public class Building {
     }
 
 
-    public int getFloors() {
-        return floors;
-    }
-
     public Map<Elevator, List<Passenger>> getElevatorsWithPassengers() {
         return elevatorsWithPassengers;
     }
@@ -36,12 +32,7 @@ public class Building {
         Passenger passenger = new Passenger();
         System.out.println(passenger + "\n");
 
-        for (Map.Entry<Elevator, List<Passenger>> entry : elevatorsWithPassengers.entrySet()) {
-            if(entry.getKey().getElevatorId() == passenger.getElevatorId()){
-                entry.getValue().add(passenger);
-                break;
-            }
-        }
+        getPassengerList(passenger.getElevatorId()).add(passenger);
     }
 
     public List<Passenger> getPassengerList(int elevatorId){
@@ -163,12 +154,12 @@ public class Building {
         if(elevator.getDestinationPos() > elevator.getCurrentPos()){
             do{
                 elevator.moveUp();
-            }while (getPassengerList(elevator.getElevatorId()).get(0).getCurrentPos() != elevator.getCurrentPos());
+            }while (elevator.getDestinationPos() != elevator.getCurrentPos());
         }
         else if (elevator.getDestinationPos() < elevator.getCurrentPos()){
             do{
                 elevator.moveDown();
-            }while (getPassengerList(elevator.getElevatorId()).get(0).getCurrentPos() != elevator.getCurrentPos());
+            }while (elevator.getDestinationPos() != elevator.getCurrentPos());
         }
 
         loadUnloadPassenger(elevator);
@@ -179,6 +170,7 @@ public class Building {
     public void elevatorStart(Elevator elevator){
 
         while(true) {
+
             if (getPassengerList(elevator.getElevatorId()).size() > 0 && elevator.getElevatedPassenger().isEmpty()) {
                 elevatorInitialStart(elevator);
             }
