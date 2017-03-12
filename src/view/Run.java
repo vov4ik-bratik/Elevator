@@ -41,7 +41,7 @@ public class Run //extends Thread /*extends Application*/
             BuildingMamagement.getInstance().createPassenger();
         }
 
-        BuildingMamagement.getInstance().elevatorStart(BuildingMamagement.getInstance().getBuilding().getElevatorById(Const.FREIGHT_ELEVATOR_ID));
+        BuildingMamagement.getInstance().elevatorStart(BuildingMamagement.getInstance().getBuilding().getElevatorById(Const.FIRST_PASSENGER_ELEVATOR_ID));
 
         //BuildingMamagement.getInstance().allElevatorsStarts();
 

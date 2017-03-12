@@ -126,14 +126,7 @@ public class Building {
             }while (elevator.getDestinationPos() != elevator.getCurrentPos());
         }
 
-        if(elevator.getElevatedPassenger().size() > 0 &&
-                elevator.getCurrentPos() == elevator.getDestinationPos()){
-            elevator.setDestinationPos(elevator.getElevatedPassenger().get(0).getDestinationPos());
-        }
-        else
-            if (elevator.getElevatedPassenger().isEmpty()) {
-                elevator.setDestinationPos(elevator.getCurrentPos());
-        }
+        elevatorDestiantionChange(elevator);
 
     }
 
@@ -157,6 +150,17 @@ public class Building {
         return false;
     }
 
+    public void elevatorDestiantionChange(Elevator elevator){
+        if(elevator.getElevatedPassenger().size() > 0 &&
+                elevator.getCurrentPos() == elevator.getDestinationPos()){
+            elevator.setDestinationPos(elevator.getElevatedPassenger().get(0).getDestinationPos());
+        }
+        else
+        if (elevator.getElevatedPassenger().isEmpty()) {
+            elevator.setDestinationPos(elevator.getCurrentPos());
+        }
+    }
+
     public void elevatorInitialStart(Elevator elevator){
 
         elevator.setDestinationPos(getPassengerList(elevator.getElevatorId()).get(0).getCurrentPos());
@@ -173,6 +177,8 @@ public class Building {
         }
 
         loadUnloadPassenger(elevator);
+
+        elevatorDestiantionChange(elevator);
 
     }
 

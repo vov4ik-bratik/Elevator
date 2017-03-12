@@ -41,8 +41,8 @@ public class BuildingMamagement extends Thread {
 
         //all this threads work serial!!! They shoul work concurrent
 
-        elevatorStart(getBuilding().getElevatorById(Const.FREIGHT_ELEVATOR_ID));
-//        elevatorStart(getBuilding().getElevatorById(Const.FIRST_PASSENGER_ELEVATOR_ID));
+//        elevatorStart(getBuilding().getElevatorById(Const.FREIGHT_ELEVATOR_ID));
+        elevatorStart(getBuilding().getElevatorById(Const.FIRST_PASSENGER_ELEVATOR_ID));
 //        elevatorStart(getBuilding().getElevatorById(Const.SECOND_PASSENGER_ELEVATOR_ID));
     }
 
