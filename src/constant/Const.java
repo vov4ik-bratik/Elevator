@@ -20,6 +20,7 @@ public class Const {
 
     public static final int ELEVATE_TIME_PER_FLOOR_ms = 1000;
     public static final int ELEVATOR_DOORS_OPEN_CLOSE_TIME_ms = 1000;
+    public static final int EMPTY_ELEVATOR_WAITING_TIME_ms = 2000;
 
 
    //passenger properties

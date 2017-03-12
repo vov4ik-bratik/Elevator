@@ -183,9 +183,7 @@ public class Building {
             }
 
             try {
-                System.out.println("\n ");
-
-                Thread.sleep(100);
+                Thread.sleep(Const.EMPTY_ELEVATOR_WAITING_TIME_ms);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
